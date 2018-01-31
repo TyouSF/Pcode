@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX员工查询</title>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>AJAX员工查询</h1> 名称: <input type="text" id="name">
+    <p>
+        <button id="btnLoad">Load查询员工</button>
+        <button id="btnGet">Get查询员工</button>
+        <button id="btnAjax">Ajax查询员工</button>
+    </p>
+    <div id="emp-list">
+
+    </div>
+</body>
+
+</html>
+<script>
+    $(document).ready(function() {
+        $('#btnLoad').click(function() {
+            var name = $("#name").val();
+            $('#emp-list').load('/employees/?name=' + name);
+        });
+
+        $('#btnGet').click(function() {
+            var name = $("#name").val();
+            $.get('/employees/', {
+                name: name
+            }, function(response) {
+                $('#emp-list').html(response);
+            });
+        });
+
+        $('#btnAjax').click(function() {
+            var name = $("#name").val();
+            $.ajax({
+                url: '/employees/',
+                data: {
+                    name: name
+                },
+                method: 'GET',
+                success: function(response) {
+                    $('#emp-list').html(response);
+                }
+            });
+        });
+    });
+</script>

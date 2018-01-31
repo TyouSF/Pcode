@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+</head>
+
+<body>
+    <h1>XHR请求</h1>
+    <div id="msg">
+
+    </div>
+    <button id="btnGet" onclick="getData()">获取内容</button>
+</body>
+
+</html>
+<script>
+    function getData() {
+        var xhr;
+        // 通过判断浏览器对象来实例化
+        if (window.ActiveXObject) {
+            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        } else if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else {
+            throw new Error('当前浏览器不支持AJAX!');
+        }
+
+        // 指定xhr状态变化事件关联
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById('msg').innerHTML = xhr.responseText;
+            }
+        }
+
+        // 初始化请求方式与URL
+        xhr.open('GET', '/xhr_content/');
+        xhr.send(); // 发送请求
+    }
+</script>

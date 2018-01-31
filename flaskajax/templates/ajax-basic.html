@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>基于jQuery AJAX请求</title>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="content">
+
+    </div>
+    <button id="btnLoad">获取content内容</button>
+    <button id="btnGet">GET 获取content内容</button>
+    <button id="btnAJAX">AJAX 获取content内容</button>
+</body>
+
+</html>
+<script>
+    $(document).ready(function() {
+        $("#btnLoad").click(function() {
+            $("#content").load('/xhr_content/');
+        });
+
+        $("#btnGet").click(function() {
+            $.get('/xhr_content/', null, function(response) {
+                $("#content").html(response);
+            });
+        });
+
+        $("#btnAJAX").click(function() {
+            $.ajax({
+                url: '/xhr_content/',
+                method: 'GET',
+                data: null,
+                success: function(response) {
+                    $('#content').html(response)
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>计算</title>
+</head>
+
+<body>
+    <input type="text" id="num_a" name="num_a"> * <input type="text" id="num_b" name="num_b"> = <input type="text" id="result2" name="result2">
+    <p>
+        <button id="btnCalc" onclick="do_ajax()">AJAX 计算</button> ajax 异步计算，没有页面刷新效果，页面内容没有被清空
+    </p>
+    <form action="#">
+        <input type="text" id="num_1" name="num_1"> * <input type="text" id="num_2" name="num_2"> = <input type="text" id="result" name="result" value="{{ result if result else '' }}">
+        <p>
+            <input type="submit" value="非 ajax 方式计算"> 使用此方法计算，将看到页面有明显的刷新，且其他内容被清空
+        </p>
+    </form>
+</body>
+
+</html>
+<script>
+    function do_ajax() {
+        var xhr = new XMLHttpRequest();
+
+        var a = document.getElementById('num_a').value;
+        var b = document.getElementById('num_b').value;
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById('result2').value = xhr.responseText;
+            }
+        }
+
+        xhr.open('GET', '/ajax_calc/?a=' + a + '&b=' + b);
+        xhr.send();
+    }
+</script>

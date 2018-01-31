@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSON AJAX查询</title>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+    部门：<select name="department" id="department">
+
+    </select> 姓名：
+    <input type="text" id="name">
+    <input type="button" id="btnSearch" value="查询">
+    <div id="emp-list">
+
+    </div>
+</body>
+
+</html>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '/departments/',
+            method: 'GET',
+            dataType: 'json',
+            success: function(depts) {
+                $.each(depts, function(i, item) {
+                    $('#department').append("<option id=" + item.id + ">" + item.name + "</option>");
+                });
+            },
+        });
+    });
+</script>

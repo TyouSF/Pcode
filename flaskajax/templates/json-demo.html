@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 示例</title>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td>标题</td>
+            <td>
+                <input type="text" id="title">
+            </td>
+        </tr>
+        <tr>
+            <td>作者</td>
+            <td>
+                <input type="text" id="author">
+            </td>
+        </tr>
+        <tr>
+            <td>定价</td>
+            <td>
+                <input type="text" id="price">
+            </td>
+        </tr>
+        <tr>
+            <td>城市</td>
+            <td>
+                <select name="city" id="city">
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="显示本地JSON数据" id="btnLocalJSON">
+                <input type="button" value="载入JSON城市数据" id="btnLoadCity">
+            </td>
+        </tr>
+    </table>
+    <button id="btnParseJSON">将字符串转换为JSON对象</button>
+    <p>转换的数据，打印在控制台，需要打开浏览器的开发工具，并在控制台进行查看</p>
+</body>
+
+</html>
+<script>
+    $(document).ready(function() {
+        var book = {
+            'title': 'Python入门',
+            'author': 'Eason',
+            'price': 29.33
+        };
+
+        $('#btnLocalJSON').click(function() {
+            $('#title').val(book.title);
+            $('#author').val(book.author);
+            $('#price').val(book.price);
+        });
+
+        $('#btnParseJSON').click(function() {
+            var str = '{"title":"Flask精讲", "price":39.00}';
+            var jsonbook = $.parseJSON(str);
+
+            console.log(jsonbook.title);
+            console.log(jsonbook.price);
+        });
+
+        $('#btnLoadCity').click(function() {
+            var cities = [{
+                    "id": 1,
+                    "name": "北京"
+                },
+                {
+                    "id": 2,
+                    "name": "上海"
+                },
+                {
+                    "id": 3,
+                    "name": "广州"
+                },
+                {
+                    "id": 4,
+                    "name": "深圳"
+                },
+                {
+                    "id": 5,
+                    "name": "香港"
+                },
+            ]
+
+            $('#city').empty();
+
+            $.each(cities, function(i, item) {
+                $('#city').append("<option value=" + item.id + ">" + item.name + "</option>");
+            });
+        });
+    });
+</script>
