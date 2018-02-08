@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图书列表</title>
+</head>
+<body>
+	<h1>图书列表</h1>
+	<table border="1" cellpadding="5">
+		<tr>
+			<th>ID</th>
+			<th>标题</th>
+			<th>分类</th>
+			<th>作者</th>
+			<th>定价</th>
+			<th>验证</th>
+			<th>出版时间</th>
+			<th>操作</th>
+		</tr>
+		{% for book in books %}
+		<tr>
+			<td>{{ book[0] }}</td>
+			<td>{{ book[1] }}</td>
+			<td>{{ book[2] }}</td>
+			<td>{{ book[3] }}</td>
+			<td>{{ book[4] }}</td>
+			<td>{{ book[5] }}</td>
+			<td>{{ book[6] }}</td>
+			<td>
+				<a href="{{ url_for('book_edit',id=book[0]) }}">编辑</a>
+				<a href="{{ url_for('book_delete',id=book[0]) }}">删除</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
