@@ -43,3 +43,16 @@
 - [jquery 中 ajax 与其他多种方式请求数据的对比](http://127.0.0.1:5000/ajax-basic/)
 - [json 数据与 ajax 的结合](http://127.0.0.1:5000/json/)
 - [基于 ajax 实现的异步查询与结果展示](http://127.0.0.1:5000/ajax-query/)
+
+## bms
+
+[bms](bms/)
+
+基于 Python 的 flask 框架，加上 sqlite3 实现简易的一个 Web 页面内的查询与数据修改操作。
+
+- 数据库使用： `sqlite`
+
+运行：
+
+1. bms 项目根目录下，执行 `python3 run.py`
+2. 访问 `http://127.0.0.1:5000/books/` 即可
